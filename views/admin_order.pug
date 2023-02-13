@@ -11,7 +11,6 @@ html
         meta(name="theme-color", content="#ffffff")
         title Dashboard Template for Semantic-UI
         link(rel="stylesheet", href="/css/semantic.css", type="text/css")
-        link(rel="stylesheet", href="/css/main_admin2.css", type="text/css")
         style(type="text/css").
         
                 body {
@@ -89,30 +88,23 @@ html
       #sidebar.three.wide.tablet.only.three.wide.computer.only.column
         .ui.vertical.borderless.fluid.text.menu
           a(href="/admin").item Katigoriya yaratish
-          a.active.item Maxsulot qo&apos;shish
-          a(href="/order").item Buyurtmalar
+          a(href="/admin-product").item Maxsulot qo&apos;shish
+          a.active.item Buyurtmalar
           .ui.hidden.divider
       #content.sixteen.wide.mobile.thirteen.wide.tablet.thirteen.wide.computer.right.floated.column
         .ui.padded.grid
-          h1.ui.huge.dividing.header Maxsulot qo'shish
-            .row.ui.form.segment(style="margin: 10px 0; padding-bottom: 15px;" )
+          h1.ui.huge.dividing.header Katigoriyalar
+            form.row.ui.form(style="padding-bottom: 15px")
               .field
-                label(for="group") Katigoriya
+                label(for="group") Status
                 select(name="group")#category.ui.dropdown
               .field
                 label Nomi
-                input(type="text", name="name", id="name" placeholder="Nomi")
+                input(type="text", name="first-name", placeholder="First Name")
               .field
                 label Qo'shimcha ma'lumot
-                input(type="text", name="text", id="text" placeholder="Qo'shimcha ma'lumot")
-              .field
-                  span#img_url Rasm yuklash
-                  label.ui.icon.button(for="file") Rasm qo'shish
-                  input#file(type="file", style="display:none")
-              .field
-                label Narxi
-                input(type="number", name="price", id="price" placeholder="Narxi")
-              button.ui.button#add-product Qo'shish
+                input(type="text", name="last-name", placeholder="Last Name")
+              button.ui.button(type="submit") Qo'shish
           .row
             table.ui.single.line.striped.selectable.unstackable.table
               thead
@@ -121,7 +113,7 @@ html
                   th Nomi 
                   th Maxsulotlar turi soni
               tbody#category-body
-  script(src="/js/jquery.js")
-  script(src="/js/axios.js")
-  script(src="/js/main_admin2.js")
+  script(src="/js/jquery.js") 
+  script(src="/js/axios.js") 
+  script(src="/js/main_admin1.js") 
   script(src="/js/category.js") 

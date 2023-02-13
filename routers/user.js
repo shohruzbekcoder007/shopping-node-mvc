@@ -28,4 +28,33 @@ router.post('/', async (req, res) => {
 
 })
 
+router.post('/login', async (req, res) => {
+
+    let user = await User.findOne({ user_name: req.body.user_name });
+    if (!user)
+        return res.render('login', {
+            message: 'Email yoki parol noto\'g\'ri'
+        })
+
+    const isValidPassword = await bcrypt.compare(req.body.password, user.password);
+    if (!isValidPassword)
+        return res.render('login', {
+            message: 'Email yoki parol noto\'g\'ri'
+        })
+
+    const token = user.generateAuthToken();
+
+    res.cookie("token", token, {
+        httpOnly: true,
+        // secure: true,
+        // maxAge: 1000000,
+        // signed: true
+    })
+
+    return res.render('main_admin', {
+        
+    })
+
+})
+
 module.exports = router;

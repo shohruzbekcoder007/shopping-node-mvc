@@ -7,10 +7,11 @@ const cookieParser = require("cookie-parser")
 const user_router = require('./routers/user')
 const category_router = require('./routers/category')
 const file_router = require('./routers/files')
+const product_router = require('./routers/product')
 
 const app = express();
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
@@ -32,7 +33,8 @@ app.use(express.static('./static'));
 app.set("view engine", "pug");
 
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb+srv://forhumoyun_aka:forhumoyun_aka@cluster0.ycg5joo.mongodb.net/shoping?retryWrites=true&w=majority')
+mongoose.connect('mongodb://127.0.0.1:27017/shopping')
+// mongoose.connect('mongodb+srv://forhumoyun_aka:forhumoyun_aka@cluster0.ycg5joo.mongodb.net/shoping?retryWrites=true&w=majority')
     .then(() => {
         console.log('MongoDBga ulanish hosil qilindi...');
     })
@@ -43,6 +45,7 @@ mongoose.connect('mongodb+srv://forhumoyun_aka:forhumoyun_aka@cluster0.ycg5joo.m
 app.use('/user', user_router)
 app.use('/category', category_router)
 app.use('/file', file_router)
+app.use('/product', product_router)
 
 app.get("/", (req, res) => {
     return res.render('main', {
@@ -55,14 +58,24 @@ app.get("/contact", (req, res) => {
 });
 
 app.get("/admin", (req, res) => {
-    return res.render('main_admin', {
+    return res.render('login', {
     })
 });
+
+// app.get("/admin", (req, res) => {
+//     return res.render('main_admin', {
+//     })
+// });
 
 app.get("/admin-product", (req, res) => {
     return res.render('admin_product', {
     })
 });
+
+app.get("/order", (req, res) => {
+    return res.render('admin_order', {
+    })
+}); 
 
 app.listen(port, () => {
     console.log(`Application is up and running under localhost:${port}`)

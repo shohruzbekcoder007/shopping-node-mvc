@@ -25,11 +25,7 @@ router.post('/uploadimg', upload.single('file'), async (req, res) => {
 
     if(req.file === undefined) return res.send("file tanlang")
     
-    const imageUrl = `http://localhost:8080/v1/file/${req.file.filename}`
-
-    const user_id = req.user._id
-
-    await User.findOneAndUpdate({_id: user_id}, { $set: {profile_img: imageUrl} })
+    const imageUrl = `http://localhost:8080/file/${req.file.filename}`
 
     return res.send(imageUrl)
     
