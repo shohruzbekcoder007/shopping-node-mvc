@@ -2,7 +2,6 @@ $(document).ready(function () {
     const selectElement = document.querySelector('#file');
 
     selectElement.addEventListener('change', async (event) => {
-        console.log(event.target.files[0])
 
         const formData = new FormData();
         formData.append("file", event.target.files[0]);
@@ -38,6 +37,9 @@ $(document).ready(function () {
                     data: formData,
                 });
                 console.log(response.data);
+                if(document.querySelector('#product-body')){
+                    $('#product-body').append(`<tr><td>###</td><td>${response.data.name}</td><td>${response.data.text}</td><td>${response.data.price}</td><td><a href="${response.data.img_url}" target="_blank" rel="noopener">Biriktirilgan rasm</a></td></tr>`)
+                }
             } catch (error) {
                 console.log(error);
             }

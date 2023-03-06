@@ -9,7 +9,7 @@ html
         meta(name="keywords", content="Semantic-UI, Theme, Design, Template")
         meta(name="author", content="PPType")
         meta(name="theme-color", content="#ffffff")
-        title Dashboard Template for Semantic-UI
+        title Admin
         link(rel="stylesheet", href="/css/semantic.css", type="text/css")
         link(rel="stylesheet", href="/css/main_admin2.css", type="text/css")
         style(type="text/css").
@@ -88,9 +88,9 @@ html
     .ui.padded.grid
       #sidebar.three.wide.tablet.only.three.wide.computer.only.column
         .ui.vertical.borderless.fluid.text.menu
-          a(href="/admin").item Katigoriya yaratish
+          a(href="/admin/admin").item Katigoriya yaratish
           a.active.item Maxsulot qo&apos;shish
-          a(href="/order").item Buyurtmalar
+          a(href="/admin/order").item Buyurtmalar
           .ui.hidden.divider
       #content.sixteen.wide.mobile.thirteen.wide.tablet.thirteen.wide.computer.right.floated.column
         .ui.padded.grid
@@ -119,9 +119,11 @@ html
                 tr
                   th #
                   th Nomi 
-                  th Maxsulotlar turi soni
-              tbody#category-body
+                  th Text
+                  th Narxi
+                  th Image
+              tbody#product-body
   script(src="/js/jquery.js")
   script(src="/js/axios.js")
   script(src="/js/main_admin2.js")
-  script(src="/js/category.js") 
+  script(src="/js/category.js")

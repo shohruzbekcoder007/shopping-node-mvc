@@ -4,7 +4,7 @@ const _ = require('lodash')
 const { cookieJwtAuth } = require('../middleware/cookieJwtAuth')
 const { Category, validateCategory } = require('../models/category')
 
-router.post('/create', async (req, res) => {
+router.post('/create', cookieJwtAuth,  async (req, res) => {
 
     const { error } = validateCategory(req.body);
 

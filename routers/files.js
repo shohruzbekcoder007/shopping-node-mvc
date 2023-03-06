@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require("mongoose")
 const Grid = require('gridfs-stream')
+const { cookieJwtAuth } = require('../middleware/cookieJwtAuth')
 
 let gfs
 const conn = mongoose.connection
@@ -21,11 +22,11 @@ conn.once('open', () => {
     console.log("connection made successfully");
 })
 
-router.post('/uploadimg', upload.single('file'), async (req, res) => {
+router.post('/uploadimg', cookieJwtAuth, upload.single('file'), async (req, res) => {
 
     if(req.file === undefined) return res.send("file tanlang")
     
-    const imageUrl = `http://localhost:8080/file/${req.file.filename}`
+    const imageUrl = `http://localhost:8000/file/${req.file.filename}`
 
     return res.send(imageUrl)
     
@@ -37,7 +38,7 @@ router.get('/:filename', async (req, res) => {
     readStream.pipe(res)
 })
 
-router.delete('/:filename', async (req, res) => {
+router.delete('/:filename', cookieJwtAuth, async (req, res) => {
     try {
         await gfs.files.deleteOne({filename: req.params.filename})
         res.send("success")

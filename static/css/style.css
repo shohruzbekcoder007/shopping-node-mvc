@@ -9710,3 +9710,7 @@ a.text-dark:hover, a.text-dark:focus {
     transform: translateY(-15px);
   }
 }
+
+.text-truncate{
+  padding: 0 10px;
+}
