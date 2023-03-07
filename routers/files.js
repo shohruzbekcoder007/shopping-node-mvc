@@ -26,7 +26,7 @@ router.post('/uploadimg', cookieJwtAuth, upload.single('file'), async (req, res)
 
     if(req.file === undefined) return res.send("file tanlang")
     
-    const imageUrl = `http://localhost:8000/file/${req.file.filename}`
+    const imageUrl = `https://musical-instruments.onrender.com/file/${req.file.filename}`
 
     return res.send(imageUrl)
     
