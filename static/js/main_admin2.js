@@ -14,7 +14,6 @@ $(document).ready(function () {
             console.log(response.data);
             document.querySelector("#img_url").classList.add("text-green");
             $('#img_url').attr("img_url", response.data);
-            window.location.reload();
         } catch (error) {
             console.log(error);
         }
@@ -40,6 +39,7 @@ $(document).ready(function () {
                 console.log(response.data);
                 if(document.querySelector('#product-body')){
                     $('#product-body').append(`<tr><td>###</td><td>${response.data.name}</td><td>${response.data.text}</td><td>${response.data.price}</td><td><a href="${response.data.img_url}" target="_blank" rel="noopener">Biriktirilgan rasm</a></td></tr>`)
+                    window.location.reload();
                 }
             } catch (error) {
                 console.log(error);
