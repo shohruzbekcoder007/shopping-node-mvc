@@ -3,7 +3,8 @@ const multer = require('multer')
 const { GridFsStorage } = require('multer-gridfs-storage')
 
 const storage = new GridFsStorage({
-    url: 'mongodb://127.0.0.1:27017/shopping',
+    // url: 'mongodb://127.0.0.1:27017/shopping',
+    url: 'mongodb+srv://mdbadmin:12333456@cluster0.ksjp1qk.mongodb.net/shopping?retryWrites=true&w=majority',
     // url: 'mongodb+srv://forhumoyun_aka:forhumoyun_aka@cluster0.ycg5joo.mongodb.net/shoping?retryWrites=true&w=majority',
     options: {
         useNewUrlParser: true,

@@ -3,6 +3,7 @@ const router = express.Router()
 const _ = require('lodash')
 const { cookieJwtAuth } = require('../middleware/cookieJwtAuth')
 const { OrderProduct, validateOrderProduct } = require('../models/order_product')
+const { Product, validateProduct } = require('../models/product')
 const { Order, validateOrder } = require('../models/order')
 
 router.post('/create',  async (req, res) => {
@@ -68,6 +69,38 @@ router.delete('/remove', async (req, res) => {
         return res.status(400).send({removed: false});
 
     return res.send({removed: true});
+});
+
+router.post('/add', async (req, res) => {
+
+    const product_id = req.body.product_id
+
+    let product = await OrderProduct.findOne({_id: product_id})
+    let prod = await Product.findOne({_id: product.product_id})
+    
+    let new_product = await OrderProduct.findOneAndUpdate({_id: product_id}, {$set:{count: product.count+1}}, {new: true})
+    if (!new_product)
+        return res.status(400).send({add: false});
+
+    return res.send({add: true, count: new_product.count, price: prod.price*new_product.count});
+});
+
+router.post('/subtraction', async (req, res) => {
+
+    const product_id = req.body.product_id
+
+    let product = await OrderProduct.findOne({_id: product_id})
+    let prod = await Product.findOne({_id: product.product_id})
+
+    if(product.count == 1){
+        return res.send({subtraction: false});
+    }
+    
+    let new_product = await OrderProduct.findOneAndUpdate({_id: product_id}, {$set:{count: product.count-1}}, {new: true})
+    if (!new_product)
+        return res.status(400).send({subtraction: false});
+
+    return res.send({subtraction: true, count: new_product.count, price: prod.price*new_product.count});
 });
 
 module.exports = router;

@@ -7,7 +7,7 @@ const { User, validateUser } = require('../models/user')
 
 router.post('/', async (req, res) => {
 
-    // try {
+    try {
 
         const { error } = validateUser(req.body);
 
@@ -22,9 +22,9 @@ router.post('/', async (req, res) => {
 
         return res.send(new_user)
 
-    // } catch (err) {
-    //     return res.send("Tizimda xatolik yuzaga keldi")
-    // }
+    } catch (err) {
+        return res.send("Tizimda xatolik yuzaga keldi")
+    }
 
 })
 
