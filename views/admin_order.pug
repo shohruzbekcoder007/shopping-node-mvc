@@ -77,6 +77,15 @@ html
                 .ui.mobile.only.grid .ui.menu .ui.vertical.menu {
                 display: none;
                 }
+
+                .btn-order {
+                    display: inline-block;
+                    padding: 5px 10px;
+                    background-color: #23527c;
+                    color: #fff;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
   body
     .ui.tablet.computer.only.padded.grid
       .ui.inverted.borderless.top.fixed.fluid.menu
@@ -94,19 +103,15 @@ html
       #content.sixteen.wide.mobile.thirteen.wide.tablet.thirteen.wide.computer.right.floated.column
         .ui.padded.grid
           h1.ui.huge.dividing.header Yangi buyurtmalar
-            form.row.ui.form.segment(style="padding-bottom: 25px; margin: 10px 0")
-              .field
-                label(for="group") Katigoriya
-                select(name="group")#category.ui.dropdown
-              //- button.ui.button(type="submit") Qo'shish
           .row
             table.ui.single.line.striped.selectable.unstackable.table
               thead
                 tr
                   th #
-                  th Nomi 
-                  th Maxsulotlar turi soni
-              tbody#category-body
+                  th Telefon Nomer
+                  th Buyurtma 
+                  th Yetkazilganligini tasdiqlash
+              tbody#order-body
   script(src="/js/jquery.js") 
   script(src="/js/axios.js") 
-  script(src="/js/category.js") 
+  script(src="/js/order.js")

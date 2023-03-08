@@ -2,7 +2,7 @@ $(document).ready(function () {
     axios.get('/category/categories')
         .then(function (response) {
             response.data.forEach((element, index) => {
-                $('#category-body').append(`<tr><td>${index + 1}</td><td>${element.name}</td><td>ipsum</td></tr>`)
+                $('#category-body').append(`<tr><td>${index + 1}</td><td>${element.name}</td></tr>`)
             });
         })
         .catch(function (error) {

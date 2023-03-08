@@ -10,6 +10,7 @@ const file_router = require('./routers/files')
 const product_router = require('./routers/product')
 const admin_router = require('./routers/admin')
 const order_product_router = require('./routers/order_product')
+const order_router = require('./routers/order')
 
 const { Product, validateProduct } = require('./models/product')
 const { Category, validateCategory } = require('./models/category')
@@ -54,6 +55,7 @@ app.use('/file', file_router)
 app.use('/product', product_router)
 app.use('/admin', admin_router)
 app.use('/order-product', order_product_router)
+app.use('/order', order_router)
 
 app.get("/", async (req, res) => {
 

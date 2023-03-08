@@ -118,9 +118,38 @@ async function orderFinally(event) {
     const machine_id = getMachineId()
     const delivered = true
     const tel_number = $('#phoneNumber').val()
+    const _id = event.target.getAttribute('order-id')
     console.log({
         machine_id,
         delivered,
         tel_number
     })
+    if(tel_number){
+        const options = {
+            url: '/order/create',
+            method: 'post',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json;charset=UTF-8'
+            },
+            data: {
+                machine_id: machine_id,
+                tel_number: tel_number
+            }
+          };
+          
+          axios(options)
+            .then(response => {
+                if(response.data.delivered){
+                    window.location.reload();
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Kutilmagan xatolik yuz berdi!")
+            })
+    } else {
+        alert("Tel nomerini kiriting")
+    }
+    
 }
